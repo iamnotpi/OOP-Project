@@ -1,4 +1,4 @@
-You can download the model in `resources` directory.
+You can download the model in the `model` directory.
 
 Running the `FaceDetectorYN.detect(Mat image, Mat faces)` returns a 2D cv::Mat of shape [num_faces, 15]:
 - 0-1: x, y of bbox top left corner 
