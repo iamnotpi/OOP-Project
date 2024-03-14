@@ -39,6 +39,8 @@ public class Haar_Cascade_Classifier {
         // Load the neccessary OpenCV library
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
+        // Replace haarcascadePath with the actual path to the haarcascades_frontalface_default.xml model in your computer,
+        // which can be found in "../opencv/build/etc/haarcascades/haarcascade_frontalface_default.xml"
         String haarcascadePath = "C:/Program Files/opencv/build/etc/haarcascades/haarcascade_frontalface_default.xml";
         CascadeClassifier faceCascade = new CascadeClassifier(haarcascadePath);
 
