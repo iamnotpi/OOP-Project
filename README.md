@@ -3,7 +3,7 @@ A mini face detection project using OpenCV Java.
 
 1. In YuNet.java I used a Face Detection YuNet model, which I also provided the raw version to download in the `/resources` directory.
 
-2. You can download the model in `models` directory.
+2. All related models are stored in the `models` directory.
 
 ## Notes
 Running the `FaceDetectorYN.detect(Mat image, Mat faces)` returns a 2D cv::Mat of shape [num_faces, 15]:
