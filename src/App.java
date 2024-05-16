@@ -39,14 +39,26 @@ public class App {
             }
             
             // Detect faces and display the frame
+            Mat frame = new Mat();
+        while (true) {
+            camera.read(frame);
+            if (frame.empty()) {
+                System.out.println("Cannot read the frame.");
+                System.exit(-1);
+            }
+            
+            // Detect faces and display the frame
             Mat faces = model.detect(frame);
             List<Rect> faceList = model.detectedFaces(faces);
             for (Rect faceRect : faceList) {
-                Mat face = new Mat(frame, faceRect);
-                float[] embedding = fr.recognizeFace(face);
-                String name = db.recognize(embedding);
-                Imgproc.rectangle(frame, faceRect, new Scalar(0, 255, 0), 2);
-                Imgproc.putText(frame, name, new org.opencv.core.Point(faceRect.x, faceRect.y - 10), FONT_HERSHEY_SIMPLEX, 0.9, new Scalar(0, 255, 0), 2);
+                // Check that the faceRect is within the frame boundaries
+                if (faceRect.x >= 0 && faceRect.y >= 0 && faceRect.x + faceRect.width <= frame.cols() && faceRect.y + faceRect.height <= frame.rows()) {
+                    Mat face = new Mat(frame, faceRect);
+                    float[] embedding = fr.recognizeFace(face);
+                    String name = db.recognize(embedding);
+                    Imgproc.rectangle(frame, faceRect, new Scalar(0, 255, 0), 2);
+                    Imgproc.putText(frame, name, new org.opencv.core.Point(faceRect.x, faceRect.y - 10), FONT_HERSHEY_SIMPLEX, 0.9, new Scalar(0, 255, 0), 2);
+                }
             }
             HighGui.imshow("Face Recognition", frame);
             if (HighGui.waitKey(1) == 27) {
