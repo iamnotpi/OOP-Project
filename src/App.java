@@ -39,15 +39,6 @@ public class App {
             }
             
             // Detect faces and display the frame
-            Mat frame = new Mat();
-        while (true) {
-            camera.read(frame);
-            if (frame.empty()) {
-                System.out.println("Cannot read the frame.");
-                System.exit(-1);
-            }
-            
-            // Detect faces and display the frame
             Mat faces = model.detect(frame);
             List<Rect> faceList = model.detectedFaces(faces);
             for (Rect faceRect : faceList) {
